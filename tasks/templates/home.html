@@ -1,0 +1,64 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Scraper</title>
+    <link rel="stylesheet" type="text/css" href="/staticfiles/bulma.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'main.css' %}">
+  </head>
+  <body>
+    <section class="section">
+      <div class="container">
+        <div class="column is-two-thirds">
+          <h1 class="title">Scraper</h1>
+          <hr><br>
+          <div>
+            <h2 class="title is-2">Tasks</h2>
+            <div class="field is-grouped">
+              <p class="control">
+                <button class="button is-primary" data-type="1">Github Scraper</button>
+              </p>
+            </div>
+          </div>
+          <br><br>
+          <div>
+            <h2 class="title is-2">Task Status</h2>
+            <br>
+            <h3>You can check log file('logs/scraper.log') and screenshot('logs/scraper_screenshot.png') for more details of failure tasks.</h3>
+            <br>
+            <table class="table is-fullwidth">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Status</th>
+                  <th>Created Date</th>
+                </tr>
+              </thead>
+              <tbody id="tasks">
+                {% for task in tasks %}
+                <tr task-id="{{ task.task_id }}">
+                  <td>{{ task.task_id }}</td>
+                  <td>{{ task.status }}</td>
+                  <td>{{ task.created }}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="content container">
+        <hr>
+        <p><small><span class="text-muted">© Balint Cosmin</a></span></small></p>
+      </div>
+    </footer>
+    <script type="text/javascript" src="{% static 'jquery-3.4.1.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'main.js' %}"></script>
+  </body>
+</html>
